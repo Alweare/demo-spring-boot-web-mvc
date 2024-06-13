@@ -51,8 +51,8 @@ public class FormateurController {
 		System.out.println("Prénom =" + prenom);
 		System.out.println("Nom = " + nom);
 		System.out.println("Email = " + email);
-		
-		return "view-formateurs";
+		//redirige vers l'adresse responsable de l'affichage des formateurs
+		return "redirect:/formateurs";
 	}
 
 }
