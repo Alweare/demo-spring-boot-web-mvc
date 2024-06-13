@@ -17,11 +17,11 @@ public class FormateurDAOBouchon implements FormateurDAO {
 
 	public FormateurDAOBouchon() {
 		lstFormateurs = new ArrayList<Formateur>();
-		lstFormateurs.add(new Formateur("Baille", "Anne-Lise", "abaille@campus-eni.fr"));
-		lstFormateurs.add(new Formateur("Gobin", "Stéphane", "sgobin@campus-eni.fr"));
+		lstFormateurs.add(new Formateur("Baille", "Anne-Lise", "abaille@campus-eni.fr",null));
+		lstFormateurs.add(new Formateur("Gobin", "Stéphane", "sgobin@campus-eni.fr",null));
 		// Ajout d’un formateur pour différencier les bouchons des couches DAL et BLL
-		lstFormateurs.add(new Formateur("Trillard", "Julien", "jtrillard@campus-eni.fr"));
-		lstFormateurs.add(new Formateur("Batard", "Al", "ahah@campus-eni.fr"));
+		lstFormateurs.add(new Formateur("Trillard", "Julien", "jtrillard@campus-eni.fr",null));
+		lstFormateurs.add(new Formateur("Batard", "Al", "ahah@campus-eni.fr","<img src='https://static.wixstatic.com/media/984bb2_6e6b4519dc074438bfba219d76fb31a4~mv2.gif'/>"));
 	}
 
 	@Override

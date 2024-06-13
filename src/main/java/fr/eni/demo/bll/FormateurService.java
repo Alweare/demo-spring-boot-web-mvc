@@ -5,7 +5,7 @@ import java.util.List;
 import fr.eni.demo.bo.Formateur;
 
 public interface FormateurService {
-	void add(String nom, String prenom, String email);
+	void add(String nom, String prenom, String email,String photo);
 
 	List<Formateur> getFormateurs();
 	

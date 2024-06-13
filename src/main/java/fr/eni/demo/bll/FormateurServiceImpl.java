@@ -18,8 +18,8 @@ public class FormateurServiceImpl implements FormateurService {
 	}
 	
 	@Override
-	public void add(String nom, String prenom, String email) {
-		Formateur formateur = new Formateur(nom, prenom, email);
+	public void add(String nom, String prenom, String email, String photo) {
+		Formateur formateur = new Formateur(nom, prenom, email,photo);
 		formateurDAO.create(formateur);
 	}
 
