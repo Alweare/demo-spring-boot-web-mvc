@@ -1,5 +1,7 @@
 package fr.eni.demo.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +26,11 @@ public class FormateurController {
 	}
 	
 	@GetMapping
-	public String afficherFormateurs() {
+	public String afficherFormateurs(Model model) {
 		System.out.println("Nous chargerons les formateurs de l'ENI");
+		List<Formateur> formateurs = this.formateurService.getFormateurs();
+		model.addAttribute("formateurs", formateurs);
+
 		return "view-formateurs";
 	}
 	@GetMapping("/detail")
@@ -40,6 +45,8 @@ public class FormateurController {
 		model.addAttribute("formateur",f); // 1 objet formateur avec son prenom, nom et son email
 		
 		System.out.println("emailFormateur = " + emailFormateur);
+		
+		System.out.println(f.getPhoto());
 		
 		return "view-formateur-detail";
 	}

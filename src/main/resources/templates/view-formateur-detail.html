@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="/css/demo-form.css" />
+<link rel="stylesheet" th:href="@{/css/general.css}" />
+<link rel="stylesheet" th:href="@{/css/demo-form.css}" />
+<link rel="icon" th:href="@{/images/logoENI.png}" />
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,6 +23,9 @@
 	
 </ul>
 </form>
+
+<img th:src="@{${formateur.photo}}" alt="" />
+
 
 
 
