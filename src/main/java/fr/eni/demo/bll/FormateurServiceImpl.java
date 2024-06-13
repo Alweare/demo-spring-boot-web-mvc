@@ -27,4 +27,10 @@ public class FormateurServiceImpl implements FormateurService {
 	public List<Formateur> getFormateurs() {
 		return formateurDAO.findAll();
 	}
+
+	@Override
+	public Formateur findByEmail(String emailFormateur) {
+		
+		return formateurDAO.read(emailFormateur);
+	}
 }

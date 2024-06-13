@@ -8,4 +8,6 @@ public interface FormateurService {
 	void add(String nom, String prenom, String email);
 
 	List<Formateur> getFormateurs();
+	
+	Formateur findByEmail(String emailFormateur);
 }

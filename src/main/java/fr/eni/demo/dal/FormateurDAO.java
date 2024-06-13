@@ -8,4 +8,6 @@ public interface FormateurDAO {
 	void create(Formateur formateur);
 
 	List<Formateur> findAll();
+	
+	Formateur read(String emailFormateur);
 }

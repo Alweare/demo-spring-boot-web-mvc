@@ -32,4 +32,9 @@ public class FormateurDAOBouchon implements FormateurDAO {
 	public List<Formateur> findAll() {
 		return lstFormateurs;
 	}
+
+	@Override
+	public Formateur read(String emailFormateur) {
+		return lstFormateurs.stream().filter(f -> f.getEmail().equals(emailFormateur)).findFirst().orElse(null);
+	}
 }

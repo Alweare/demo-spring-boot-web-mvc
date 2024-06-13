@@ -1,15 +1,27 @@
 package fr.eni.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.eni.demo.bll.FormateurService;
+import fr.eni.demo.bo.Formateur;
+
 @Controller
 @RequestMapping("/formateurs")
 public class FormateurController {
 	
+	private FormateurService formateurService;
+	
+	
+	
+	
+	public FormateurController(FormateurService formateurService) {
+		this.formateurService = formateurService;
+	}
 	
 	@GetMapping
 	public String afficherFormateurs() {
@@ -18,7 +30,15 @@ public class FormateurController {
 	}
 	@GetMapping("/detail")
 	public String detailFormateurParParametre(@RequestParam(name ="email", 
-	required = false, defaultValue = "ahah@campus-eni.fr") String emailFormateur) {
+												required = false, 
+												defaultValue = "ahah@campus-eni.fr") 
+												String emailFormateur, 
+												Model model) {
+		
+		
+		Formateur f = this.formateurService.findByEmail(emailFormateur);
+		model.addAttribute("formateur",f); // 1 objet formateur avec son prenom, nom et son email
+		
 		System.out.println("emailFormateur = " + emailFormateur);
 		
 		return "view-formateur-detail";
