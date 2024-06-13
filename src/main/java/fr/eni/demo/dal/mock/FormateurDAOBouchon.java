@@ -21,6 +21,7 @@ public class FormateurDAOBouchon implements FormateurDAO {
 		lstFormateurs.add(new Formateur("Gobin", "Stéphane", "sgobin@campus-eni.fr"));
 		// Ajout d’un formateur pour différencier les bouchons des couches DAL et BLL
 		lstFormateurs.add(new Formateur("Trillard", "Julien", "jtrillard@campus-eni.fr"));
+		lstFormateurs.add(new Formateur("Batard", "Al", "ahah@campus-eni.fr"));
 	}
 
 	@Override
