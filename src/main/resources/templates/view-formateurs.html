@@ -8,41 +8,47 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="text-align: center">Wesh les enfants ! </h1>
-<img alt="" src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?q=80&w=2041&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="width:40%">
-<table>
-	<thead>
-		<tr>
-			<th >Prénom</th>
-			<th >Nom</th>
-			<th >Email</th>
-			<th >Action</th>
+	<div data-th-replace="~{/fragments/fragment-entete :: frag-entete}"></div>
+	<h1 style="text-align: center">Wesh les enfants !</h1>
+	<img alt=""
+		src="https://images.unsplash.com/photo-1607990283143-e81e7a2c9349?q=80&w=2041&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+		style="width: 40%">
+	<table>
+		<thead>
+			<tr>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>Email</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<thbody> <!-- une ligne tr par formateur-->
+		<tr th:each="item : ${formateurs}">
+			<!-- chaque formateur sera placé dans item -->
+
+			<td th:text="${item.prenom}"></td>
+			<td th:text="${item.nom}"></td>
+			<td th:text="${item.email}"></td>
+
+			<td><a th:href="@{/formateurs/detail(email=${item.email})}">Détail</a></td>
 		</tr>
-	</thead>
-	<thbody>
-		<!-- une ligne tr par formateur-->
-		<tr th:each="item : ${formateurs}" > <!-- chaque formateur sera placé dans item -->
-	
-			<td th:text="${item.prenom}" ></td>
-			<td th:text="${item.nom}" ></td>
-			<td th:text="${item.email}" ></td>
-			
-			<td> <a th:href="@{/formateurs/detail(email=${item.email})}">Détail</a></td>
-		</tr>
-	</thbody>
-</table>
-<a href="/formateurs/detail?email=abaille@campus-eni.fr">Accéder au détail de Anne-lise</a>
-<a href="/formateurs/detail?email=sgobin@campus-eni.fr">Accéder au détail de Stéphane</a>
-<a href="/formateurs/detail?email=jtrillard@campus-eni.fr">Accéder au détail de Julien</a>
-<a href="/formateurs/detail?email=">le paramètre n'a pas de valeur</a>
-<a href="/formateurs/detail">Accès sans le paramètre</a>
+		</thbody>
+	</table>
+	<a href="/formateurs/detail?email=abaille@campus-eni.fr">Accéder au
+		détail de Anne-lise</a>
+	<a href="/formateurs/detail?email=sgobin@campus-eni.fr">Accéder au
+		détail de Stéphane</a>
+	<a href="/formateurs/detail?email=jtrillard@campus-eni.fr">Accéder
+		au détail de Julien</a>
+	<a href="/formateurs/detail?email=">le paramètre n'a pas de valeur</a>
+	<a href="/formateurs/detail">Accès sans le paramètre</a>
 
 
 
 
 
 
-
+	<div data-th-replace="~{fragments/fragment-footer :: frag-footer}"></div>
 
 </body>
 </html>

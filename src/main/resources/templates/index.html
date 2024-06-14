@@ -8,12 +8,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div data-th-replace="/fragments/fragment-entete :: frag-entete"></div>
 
 	<h1>Application de démonstration de Spring Web</h1>
 	<nav>
 		<a href="formateurs">L'ensemble des formateurs</a>
 	</nav>
-	 <img src="https://images.unsplash.com/photo-1718046348910-32ccf22f37bb?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" style="width:50%"/>
+	<img
+		src="https://images.unsplash.com/photo-1718046348910-32ccf22f37bb?q=80&w=2075&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+		alt="" style="width: 50%" />
 
+	<div data-th-replace="fragments/fragment-footer :: frag-footer"></div>
 </body>
 </html>
