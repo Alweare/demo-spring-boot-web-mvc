@@ -4,6 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class Formateur implements Serializable {
 	
 	
@@ -11,9 +15,13 @@ public class Formateur implements Serializable {
 	* Identifiant de l'interface Serializable
 	*/
 	private static final long serialVersionUID = 1L;
-
+@NotBlank
+@Size(min = 2, max = 30, message="le nom doit avoir minimum 2 caractères et ne peut excdéder 30 caractères ")
 	private String nom;
+@NotBlank
 	private String prenom;
+@NotBlank
+@Email
 	private String email;
 
 	//1 formateur peut dispenser plusieurs cours
