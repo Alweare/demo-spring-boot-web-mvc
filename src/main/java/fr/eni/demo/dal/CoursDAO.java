@@ -10,4 +10,6 @@ public interface CoursDAO {
 	List<Cours> findAll();
 	
 	void insertCoursFormateur(long idCours, String emailFormateur);
+	
+	List<Cours> findByFormateur (String emailFormateur);
 }

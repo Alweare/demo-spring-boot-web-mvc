@@ -2,6 +2,9 @@ package fr.eni.demo.dal;
 
 import java.util.List;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import fr.eni.demo.bo.Formateur;
@@ -13,28 +16,48 @@ public class FormateurDAOImpl implements FormateurDAO{
 	private static final String UPDATE = "UPDATE FORMATEURS SET nom = :nom, prenom=:prenom WHERE email= :email";
 	private static final String FINDAL_ALL = "SELECT email, nom,prenom FROM FORMATEURS";
 
+	private NamedParameterJdbcTemplate jdbcTemplate;
+	
+	
+	public FormateurDAOImpl(NamedParameterJdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public void create(Formateur formateur) {
-		// TODO Auto-generated method stub
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("email", formateur.getEmail());
+		namedParameters.addValue("nom", formateur.getNom());
+		namedParameters.addValue("prenom", formateur.getPrenom());
+	
+		jdbcTemplate.update(INSERT, namedParameters);
 		
 	}
 
 	@Override
 	public Formateur read(String emailFormateur) {
-		// TODO Auto-generated method stub
-		return null;
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("email", emailFormateur);
+		
+		return jdbcTemplate.queryForObject(FIND_BY_EMAIL, namedParameters,  new BeanPropertyRowMapper<>(Formateur.class));
+		
 	}
 
 	@Override
 	public void update(Formateur formateur) {
-		// TODO Auto-generated method stub
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("email", formateur.getEmail());
+		namedParameters.addValue("nom", formateur.getNom());
+		namedParameters.addValue("prenom", formateur.getPrenom());
+		jdbcTemplate.update(UPDATE, namedParameters);
 		
 	}
 
 	@Override
 	public List<Formateur> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return jdbcTemplate.query(FINDAL_ALL, new BeanPropertyRowMapper<>(Formateur.class));
 	}
 
 }
