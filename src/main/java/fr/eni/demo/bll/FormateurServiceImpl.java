@@ -22,7 +22,9 @@ public class FormateurServiceImpl implements FormateurService {
 	@Override
 	public void add(Formateur formateur) {
 		
+		
 		formateurDAO.create(formateur);
+		formateur.getListeCours().forEach(c -> coursDAO.insertCoursFormateur(c.getId(), formateur.getEmail()));
 	}
 
 	@Override
@@ -32,7 +34,12 @@ public class FormateurServiceImpl implements FormateurService {
 
 	@Override
 	public Formateur findByEmail(String emailFormateur) {
-		return formateurDAO.read(emailFormateur);
+		Formateur f = formateurDAO.read(emailFormateur);
+		List<Cours> listeCours = coursDAO.findByFormateur(emailFormateur);
+		if(listeCours != null ) {
+			f.setListeCours(listeCours);
+		}
+		return f;
 	}
 
 	public void update(Formateur formateur) {

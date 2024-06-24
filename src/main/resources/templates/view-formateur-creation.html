@@ -40,10 +40,13 @@
 			
 			<select id="inputCours" th:field="*{listeCours}"  multpile="multiple">
 			
-					<option value="" th:each="item : ${coursSession}"
+			<option  th:each="item : ${coursSession}"
 						th:value="${item.id}" th:text="${item.titre}">
 					</option>
-			</select></li>
+			
+					
+			</select>
+			</li>
 
 			<li><button type="submit">Enregistrer</button></li>
 

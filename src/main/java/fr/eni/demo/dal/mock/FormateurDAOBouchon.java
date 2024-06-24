@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import fr.eni.demo.bo.Formateur;
 import fr.eni.demo.dal.FormateurDAO;
 
-@Repository
+
 public class FormateurDAOBouchon implements FormateurDAO {
 
 	// Solution temporaire - gestion d'une liste de formateur locale

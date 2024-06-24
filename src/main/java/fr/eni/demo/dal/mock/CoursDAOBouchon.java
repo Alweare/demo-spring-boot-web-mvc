@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import fr.eni.demo.bo.Cours;
 import fr.eni.demo.dal.CoursDAO;
 
-@Repository
+
 public class CoursDAOBouchon implements CoursDAO {
 	// Solution temporaire - gestion d'une liste de formateur locale
 	private static List<Cours> lstCours;
@@ -38,5 +38,11 @@ public class CoursDAOBouchon implements CoursDAO {
 	@Override
 	public void insertCoursFormateur(long idCours, String emailFormateur) {
 		System.out.println("Formateur - " + emailFormateur + " dispense " + idCours);
+	}
+
+	@Override
+	public List<Cours> findByFormateur(String emailFormateur) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

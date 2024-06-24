@@ -13,7 +13,7 @@ import fr.eni.demo.bo.Cours;
 public class CoursDAOImpl implements CoursDAO{
 
 	private static final String FIND_BY_ID ="SELECT id,titre,duree FROM COURS_ENI WHERE id = :id";
-	private static final String FINDAL_ALL = "SELECT email, nom,prenom FROM FORMATEURS";
+	private static final String FIND_ALL = "SELECT id,titre,duree FROM COURS_ENI";
 	private static final String INSERT = "INSERT INTO COURS_FORMATEUR (email_formateur,id_cours) VALUES (:email,:idCours)";
 	private static final String FIND_BY_EMAIL = "SELECT id,titre,duree FROM COURS_ENI ce INNER JOIN COURS_FORMATEUR cf ON ce.id = cf.id_cours  WHERE email_formateur = :emailFormateur";
 	private NamedParameterJdbcTemplate jdbcTemplate;
@@ -28,14 +28,12 @@ public class CoursDAOImpl implements CoursDAO{
 		MapSqlParameterSource mapParameterSource = new MapSqlParameterSource();
 		mapParameterSource.addValue("id", id);
 		
-
 		return jdbcTemplate.queryForObject(FIND_BY_ID, mapParameterSource, new BeanPropertyRowMapper<>(Cours.class)) ;
 	}
 
 	@Override
 	public List<Cours> findAll() {
-		// TODO Auto-generated method stub
-		return jdbcTemplate.query(FINDAL_ALL, new BeanPropertyRowMapper<>(Cours.class));
+		return jdbcTemplate.query(FIND_ALL, new BeanPropertyRowMapper<>(Cours.class));
 	}
 
 	@Override

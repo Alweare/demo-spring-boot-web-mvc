@@ -78,8 +78,9 @@ public class FormateurController {
 		return "redirect:/formateurs/detail?email=" + email;
 
 	}
+	
 	@GetMapping("/creer")
-	public String afficherCreationFormateur(Model model) {
+	public String afficherCreationFormateur( Model model) {
 		// Etape 1 : Création d'une instance de formateur
 		Formateur formateur = new Formateur();
 		
