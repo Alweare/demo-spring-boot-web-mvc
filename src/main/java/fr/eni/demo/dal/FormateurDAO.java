@@ -7,7 +7,11 @@ import fr.eni.demo.bo.Formateur;
 public interface FormateurDAO {
 	void create(Formateur formateur);
 
+	Formateur read(String emailFormateur);
+
+	void update(Formateur formateur);
+
 	List<Formateur> findAll();
 	
-	Formateur read(String emailFormateur);
+	int countEmail(String email);
 }
