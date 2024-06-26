@@ -15,7 +15,7 @@ public class FormateurDAOImpl implements FormateurDAO{
 	private static final String FIND_BY_EMAIL ="SELECT email, nom,prenom FROM FORMATEURS WHERE email =:email";
 	private static final String UPDATE = "UPDATE FORMATEURS SET nom = :nom, prenom=:prenom WHERE email= :email";
 	private static final String FINDAL_ALL = "SELECT email, nom,prenom FROM FORMATEURS";
-
+	private static final String COUNT_BY_EMAIL ="SELECT count(*) FROM FORMATEURS WHERE email =:email";
 	private NamedParameterJdbcTemplate jdbcTemplate;
 	
 	
@@ -58,6 +58,13 @@ public class FormateurDAOImpl implements FormateurDAO{
 		
 		
 		return jdbcTemplate.query(FINDAL_ALL, new BeanPropertyRowMapper<>(Formateur.class));
+	}
+
+	@Override
+	public int countEmail(String email) {
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+		mapSqlParameterSource.addValue("email", email);
+		return jdbcTemplate.queryForObject(COUNT_BY_EMAIL, mapSqlParameterSource, Integer.class);
 	}
 
 }

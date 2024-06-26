@@ -48,4 +48,10 @@ public class FormateurDAOBouchon implements FormateurDAO {
 		}		
 	}
 
+	@Override
+	public int countEmail(String email) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

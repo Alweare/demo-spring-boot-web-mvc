@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import fr.eni.demo.bll.CoursService;
 import fr.eni.demo.bll.FormateurService;
 import fr.eni.demo.bo.Cours;
 import fr.eni.demo.bo.Formateur;
+import fr.eni.demo.exception.BusinessException;
 import jakarta.validation.Valid;
 
 @Controller
@@ -61,10 +63,18 @@ public class FormateurController {
 	}
 
 	@PostMapping("/detail")
-	public String mettreAJourFormateur( @ModelAttribute("formateur") Formateur formateur) {
+	public String mettreAJourFormateur(@Valid @ModelAttribute("formateur") Formateur formateur, BindingResult bindingResult) {
 		
 		
-		this.formateurService.update(formateur);
+		try {
+			this.formateurService.update(formateur);
+		} catch (BusinessException e) {
+			// TODO Auto-generated catch block
+			e.getErreurs().forEach(err -> {ObjectError error = new ObjectError("globalError", err);
+			bindingResult.addError(error);
+				}
+			);
+		}
 
 		//redirige vers l'adresse responsable de l'affichage des formateurs
 		return "redirect:/formateurs";
@@ -95,13 +105,28 @@ public class FormateurController {
 			BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			return "view-formateur-creation";
+		}else {
+		
+			//appel du service en charge de la création du formateur
+			try {
+				this.formateurService.add(formateur);
+				return "redirect:/formateurs";
+			} catch (BusinessException e) {
+				e.getErreurs().forEach(err -> {
+					ObjectError error = new ObjectError("globalError", err);
+					bindingResult.addError(error);
+							}
+						);
+				return "view-formateur-creation";
+			}
+	
 		}
-		//appel du service en charge de la création du formateur
-		this.formateurService.add(formateur);
 		
 		
 		
-		return "redirect:/formateurs";
+		
+		
+		
 		
 	}
 

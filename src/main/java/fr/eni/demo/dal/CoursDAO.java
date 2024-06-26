@@ -12,4 +12,6 @@ public interface CoursDAO {
 	void insertCoursFormateur(long idCours, String emailFormateur);
 	
 	List<Cours> findByFormateur (String emailFormateur);
+	
+	int countByIds(List<Long> ids);
 }

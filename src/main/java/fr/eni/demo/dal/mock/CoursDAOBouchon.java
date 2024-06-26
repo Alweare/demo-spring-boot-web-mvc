@@ -45,4 +45,10 @@ public class CoursDAOBouchon implements CoursDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int countByIds(List<Long> ids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
