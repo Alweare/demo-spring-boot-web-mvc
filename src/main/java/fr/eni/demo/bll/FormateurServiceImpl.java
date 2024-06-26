@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.eni.demo.bo.Cours;
 import fr.eni.demo.bo.Formateur;
@@ -23,6 +24,7 @@ public class FormateurServiceImpl implements FormateurService {
 	}
 
 	@Override
+	@Transactional
 	public void add(Formateur formateur) throws BusinessException {
 
 		BusinessException be = new BusinessException();
@@ -65,7 +67,7 @@ private boolean checkListeCours(List<Cours> listeCours, BusinessException be) {
 
 	boolean isValid = false;
 	if(listeCours == null || listeCours.isEmpty()) {
-		be.add("Création impossible. la lkiste des cours doit être renseignée");
+		be.add("Création impossible. la liste des cours doit être renseignée");
 	}else {
 		List<Long> ids = listeCours.stream().map(Cours::getId).toList();
 
