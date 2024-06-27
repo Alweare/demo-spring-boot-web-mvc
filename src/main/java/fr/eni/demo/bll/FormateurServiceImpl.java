@@ -24,7 +24,7 @@ public class FormateurServiceImpl implements FormateurService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional(rollbackFor = BusinessException.class)
 	public void add(Formateur formateur) throws BusinessException {
 
 		BusinessException be = new BusinessException();

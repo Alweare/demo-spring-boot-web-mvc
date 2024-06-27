@@ -30,7 +30,7 @@
 			<td th:text="${item.nom}"></td>
 			<td th:text="${item.email}"></td>
 
-			<td><a th:href="@{/formateurs/detail(email=${item.email})}">Détail</a></td>
+			<td><a sec:authorize="hasRole('ADMIN') && hasRole('FORMATEUR')" th:href="@{/formateurs/detail(email=${item.email})}">Détail</a></td>
 		</tr>
 		</thbody>
 	</table>

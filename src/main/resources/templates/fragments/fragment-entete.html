@@ -1,16 +1,33 @@
 <header data-th-fragment="frag-entete">
+	<div sec:authorize="isAuthenticated()">
+	Logged user: <span sec:authentication="name">Bob</span> 
+	Roles: <span sec:authentication="principal.authorities"></span>
+	
+	</div>
+	
+	
 	<nav>
-	<ul>
-		<li><a href="/formateurs">L'ensemble des formateurs</a></li>
-		<li><a href="/formateurs/creer">Créer un formateur</a></li>
-	</ul>
-	<ul>
-		<li> <a href="/contexte/SessionEtRequest">Démo-Contextes</a></li>
-		<li><a href="/contexte/SessionEtRequest?pseudo=Julien">Pseudo Julien</a></li>
-		<li><a href="/contexte/SessionEtRequest/recuperer">Récupérer les utilisateurs</a></li>
-		<li><a href="/utilisateurs">Utilisateur (autre controller)</a></li>
-	</ul>
-		
+		<ul>
+
+			<li sec:authorize="isAuthenticated()"><a href="/formateurs">L'ensemble
+					des formateurs</a></li>
+			<li sec:authorize="hasRole('ADMIN')"><a
+				href="/formateurs/creer">Créer un formateur</a></li>
+
+			<li sec:authorize="!isAuthenticated()"><a href="/login">Se
+					connecter</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="/logout">Se
+					déconnecter</a></li>
+		</ul>
+		<ul sec:authorize="hasRole('ADMIN')">
+			<li><a href="/contexte/SessionEtRequest">Démo-Contextes</a></li>
+			<li><a href="/contexte/SessionEtRequest?pseudo=Julien">Pseudo
+					Julien</a></li>
+			<li><a href="/contexte/SessionEtRequest/recuperer">Récupérer
+					les utilisateurs</a></li>
+			<li><a href="/utilisateurs">Utilisateur (autre controller)</a></li>
+		</ul>
+
 
 	</nav>
 
